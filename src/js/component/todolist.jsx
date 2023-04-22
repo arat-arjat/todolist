@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 
+
 export const TodoList = () => {
   const [inputValue, setInpuntValue] = useState("");
   const [taskList, setTaskList] = useState([
@@ -41,6 +42,9 @@ export const TodoList = () => {
 console.log(posicionList)
   }
 
+  
+
+
   return (
     <>
       <div className= "m-auto p-5 justify-content-center"  style={{width: "30rem"}}> 
@@ -51,13 +55,15 @@ console.log(posicionList)
               <input type="text" onKeyUp={handleyAddTask} style={{width: "25rem"}}/>
             </div>
           </div>
-          <ul className="list-group">
-            {taskList.map((element, index) => {
+          <ul className="list-group"> { 
+          taskList.length == 0 && <p>No hay tareas, añadir tareas. </p>
+          }
+            {taskList.length != 0 && taskList.map((element, index) => {
               return (
                 <li key={index} className="list-group-item">
                   {" "}
                   {element.description}{" "}
-                  <button type="button" onClick={ () => deletTask(index) } className="btn btn-danger"> x </button>
+                  <button type="button" onClick={ () => deletTask(index) } className="btn btn-danger"> <i className="fa-solid fa-trash"></i> </button>
                 </li>
               );
             })}
